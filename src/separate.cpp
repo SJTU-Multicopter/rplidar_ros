@@ -33,7 +33,8 @@ void scan1Callback(const sensor_msgs::LaserScan scan)
                 	}
                 	dist = sum/num;
                 	if(dist > 0.5 && dist < 1.0 && num >90 && num <180){
-                	        flag1 = true;	
+                	        flag1 = true;
+                	        ROS_INFO("Distance:%f\nCounts:%d",dist,num);	
                 	}
                 }   	
                 init1_ok = true;
@@ -60,7 +61,8 @@ void scan2Callback(const sensor_msgs::LaserScan scan)
                 	}
                 	dist = sum/num;
                 	if(dist > 0.5 && dist < 1.0 && num >90 && num <180){
-                	        flag2 = true;	
+                	        flag2 = true;
+                	        ROS_INFO("Distance:%f\nCounts:%d",dist,num);	
                 	}
                 }   
                 init2_ok = true;	
