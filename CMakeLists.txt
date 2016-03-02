@@ -28,13 +28,6 @@ target_link_libraries(rplidarNode ${catkin_LIBRARIES})
 add_executable(rplidarNodeClient src/client.cpp)
 target_link_libraries(rplidarNodeClient ${catkin_LIBRARIES})
 
-add_executable(separate 
-  src/separate.cpp
-)
-target_link_libraries(separate 
-  ${catkin_LIBRARIES}
-)
-
 install(TARGETS rplidarNode rplidarNodeClient
   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
