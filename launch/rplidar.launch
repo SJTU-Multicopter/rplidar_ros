@@ -15,4 +15,6 @@
   	<param name="angle_compensate"    type="bool"   value="true"/>
 	<remap from="scan" to="scan_horizontal"/>
   </node>
+
+  <node name="find_obstacle"          pkg="rplidar_ros"  type="find_min_distance" output="screen">
 </launch>
