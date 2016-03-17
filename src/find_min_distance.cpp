@@ -1,6 +1,7 @@
 #include "ros/ros.h"
 #include "sensor_msgs/LaserScan.h"
 #include "mavros_extras/LaserDistance.h"
+#include <math.h>
 
 mavros_extras::LaserDistance pos;
 
@@ -13,11 +14,25 @@ void scanCallback(const sensor_msgs::LaserScan laser)
   angle = 0;
   for(int i=0; i<laser.ranges.size(); i=i+1)
   {
-    if (laser.ranges[i]>0.9 && laser.ranges[i]<laser.range_max)
-      if(laser.ranges[i]<min_distance)
+    if (laser.ranges[i] > 0.9 && laser.ranges[i] < laser.range_max)
+      if(laser.ranges[i] < min_distance)
       {
-        min_distance = laser.ranges[i];
-        angle=i;
+        if(i == 0){
+          if(fabs(laser.ranges[i] - laser.ranges[i + 1]) < 0.5 || fabs(laser.ranges[i] - laser.ranges[laser.ranges.size() - 1]) < 0.5){
+            min_distance = laser.ranges[i];
+            angle = i;
+          }
+        }else if(i < laser.ranges.size() - 1){
+          if(fabs(laser.ranges[i] - laser.ranges[i + 1]) < 0.5 || fabs(laser.ranges[i] - laser.ranges[i - 1]) < 0.5){
+            min_distance = laser.ranges[i];
+            angle = i;
+          }
+        }else{
+          if(fabs(laser.ranges[i] - laser.ranges[i - 1]) < 0.5 || fabs(laser.ranges[i] - laser.ranges[0]) < 0.5){
+            min_distance = laser.ranges[i];
+            angle = i;
+          }
+        } 
       }
     }
     pos.min_distance = min_distance*100;
