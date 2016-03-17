@@ -77,8 +77,8 @@ int main(int argc, char **argv)
         ros::NodeHandle n;
         ros::Subscriber scan_sub1 = n.subscribe("/scan1", 1, scan1Callback);
         ros::Subscriber scan_sub2 = n.subscribe("/scan2", 1, scan2Callback);
-        ros::Publisher scan_pub1 = n.advertise<sensor_msgs::LaserScan>("/scan_vertical", 1000);
-        ros::Publisher scan_pub2 = n.advertise<sensor_msgs::LaserScan>("/scan_horizontal", 1000);
+        ros::Publisher scan_pub1 = n.advertise<sensor_msgs::LaserScan>("/scan_vertical", 5);
+        ros::Publisher scan_pub2 = n.advertise<sensor_msgs::LaserScan>("/scan_horizontal", 5);
         ros::Rate loop_rate(10);
 
         while(ros::ok())
